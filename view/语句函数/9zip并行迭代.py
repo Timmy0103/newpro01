@@ -1,0 +1,8 @@
+# zip()并行迭代
+names = ('高老一','高老二','高老三','高老四')
+ages =(12,13,14,15)
+jobs = ('老师','程序员','公务员')
+for name, age, job in zip(names, ages, jobs):
+    print("{0}--{1}--{2}".format(name, age, job))
+for i in range(3):
+    print("{0}--{1}--{2}".format(names[i], ages[i], jobs[i]))
