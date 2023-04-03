@@ -56,14 +56,14 @@ class MainGame():
             # 调用渲染敌方子弹列表的一个方法
             self.blitEnemyBullet()
             time.sleep(0.02)
-            #窗口的刷新
+            # 窗口的刷新
             _display.update()
     # 创建敌方坦克
     def creatEnemyTank(self):
         left = random.randint(1,7)
         top = 100
-        speed = random.randint(3,6)
         for i in range(MainGame.EnemyTank_count):
+            speed = random.randint(3, 6)
             left = random.randint(1, 7)
             eTank = EnemyTank(left*100,top,speed)
             MainGame.EnemyTank_list.append(eTank)
@@ -75,8 +75,10 @@ class MainGame():
             eTank.randMove()
             # 调用敌方坦克的射击
             eBullet = eTank.shot()
-            # 将子弹存储到敌方子弹列表
-            MainGame.Enemy_bullet_list.append(eTank)
+            # 如果子弹为None，不加入到列表
+            if eBullet:
+                # 将子弹存储到敌方子弹列表
+                MainGame.Enemy_bullet_list.append(eBullet)
     # 将我方子弹加入到窗口中
     def blitBullet(self):
         for bullet in MainGame.Bullet_list:
@@ -251,6 +253,9 @@ class EnemyTank(Tank):
             return 'L'
         elif num == 4:
             return 'R'
+    # def displayEnemyTank(self):
+    #     super().displayTank()
+    # 随机移动
     def randMove(self):
         if self.step <= 0:
             #V更改方向
@@ -261,14 +266,10 @@ class EnemyTank(Tank):
             self.move()
             # 步数减1
             self.step -= 1
-    # def displayEnemyTank(self):
-    #     super().displayTank()
-        # 方向
-        # 图片
-        # rect
-        # 速度
-        # live 是否存活
-        pass
+    def shot(self):
+        num = random.randint(1,1000)
+        if num <= 20:
+            return Bullet(self)
 class Bullet():
     def __init__(self,tank):
         # 图片
