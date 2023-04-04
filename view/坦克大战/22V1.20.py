@@ -224,7 +224,7 @@ class MainGame():
                     if MainGame.TANK_P1 and MainGame.TANK_P1.live:
                         # 修改坦克的移动状态
                         MainGame.TANK_P1.stop = True
-    # 左上角文字绘制的功能
+    # 左上角文字绘制功能
     def getTextSurface(self,text):
         # 初始化字体模块
         pygame.font.init()
